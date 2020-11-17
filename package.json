@@ -8,6 +8,14 @@
     "build": "webpack",
     "watch": "jest --watchAll *.js"
   },
+  "babel": {
+	  "presets": ["@babel/preset-env"]
+  }, 
+  "jest": {
+	  "transform": {
+		  "^.+\\.jsx?$": "babel-jest"
+	  }
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ghidalgo93/todo.git"
