@@ -1,5 +1,4 @@
 import Todo from '../src/todo';
-import {format} from 'date-fns';
  
 describe('testing functionality of todo factory function', () => {
 	let todoTest;
