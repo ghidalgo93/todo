@@ -2,26 +2,10 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/index.js":
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
-/*! namespace exports */
-/*! exports [not provided] [no usage info] */
-/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _todo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./todo */ "./src/todo.js");
-
-var test = (0,_todo__WEBPACK_IMPORTED_MODULE_0__.default)();
-
-/***/ }),
-
-/***/ "./src/todo.js":
-/*!*********************!*\
-  !*** ./src/todo.js ***!
-  \*********************/
+/***/ "./src/domController.js":
+/*!******************************!*\
+  !*** ./src/domController.js ***!
+  \******************************/
 /*! namespace exports */
 /*! export default [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
@@ -32,77 +16,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
-function Todo() {
-  var title = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  var description = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
-  var dueDate = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-  var priority = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 3;
-  var _title = title;
-  var _description = description;
-  var _dueDate = dueDate;
-  var _priority = priority;
+var domController = function () {
+  var todoInput = document.getElementById('todoItem');
+  var addBtn = document.getElementById('add-btn');
+  addBtn.addEventListener('click', handleAdd, false);
 
-  var getTitle = function getTitle() {
-    return _title;
+  var handleAdd = function handleAdd() {
+    var newInput = todoInput.value;
+    console.log(newInput);
   };
+}();
 
-  var setTitle = function setTitle(newTitle) {
-    if (typeof newTitle !== "string") {
-      throw TypeError('title must be a string');
-    }
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (domController);
 
-    return _title = newTitle;
-  };
+/***/ }),
 
-  var getDescription = function getDescription() {
-    return _description;
-  };
+/***/ "./src/index.js":
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
+/*! namespace exports */
+/*! exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-  var setDescription = function setDescription(newDesc) {
-    if (typeof newDesc !== "string") {
-      throw TypeError('description must be a string');
-    }
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _domController__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./domController */ "./src/domController.js");
 
-    return _description = newDesc;
-  };
-
-  var getDueDate = function getDueDate() {
-    return _dueDate;
-  };
-
-  var setDueDate = function setDueDate(newDate) {
-    if (newDate instanceof Date === false) {
-      throw TypeError('due date must be a date object');
-    }
-
-    return _dueDate = newDate;
-  };
-
-  var getPriority = function getPriority() {
-    return _priority;
-  };
-
-  var setPriority = function setPriority(newPri) {
-    if (typeof newPri !== "number") {
-      throw TypeError('priority must be a number');
-    }
-
-    return _priority = newPri;
-  };
-
-  return {
-    getTitle: getTitle,
-    setTitle: setTitle,
-    getDescription: getDescription,
-    setDescription: setDescription,
-    getDueDate: getDueDate,
-    setDueDate: setDueDate,
-    getPriority: getPriority,
-    setPriority: setPriority
-  };
-}
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Todo);
+(0,_domController__WEBPACK_IMPORTED_MODULE_0__.default)();
 
 /***/ })
 
