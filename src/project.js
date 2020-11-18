@@ -4,16 +4,20 @@ function Project(title = ''){
 
 	const getTitle = () => _title;
 	const getList = () => _list;
-	const addToList = (todoItem) => {
+	const addTodo = (todoItem) => {
 		_list.push(todoItem);
 		return _list;
 	}
-	//removefromlist
+	const removeTodo = (todoItem) => {
+		_list = _list.filter(item => item !== todoItem); 
+		return _list;
+	}
 
 	return {
 		getTitle,
 		getList, 
-		addToList
+		addTodo,
+		removeTodo
 	}
 }
 

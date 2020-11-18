@@ -1,5 +1,4 @@
-import Todo from '../src/todo';
- 
+import Todo from '../src/todo'; 
 describe('testing functionality of todo factory function', () => {
 	let todoTest;
 	beforeEach(function(){
