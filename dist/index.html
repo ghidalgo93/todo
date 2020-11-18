@@ -5,7 +5,23 @@
 	<title>todo</title>
 </head>
 <body>
-	<div id="wrapper"></div>
+	<div id="wrapper">
+		<h1 id="headline">Welcome to Do</h1>
+
+		<div id="todo-input">
+			<label for="todo-item">New Do:</label>
+			<input type="text" name="todo-item" id="todo-item">
+			<!-- <label for="project-pulldown"></label> -->
+			<select id="project-pulldown" name="project-pulldown">
+				<option value="default">home</option>
+			</select>
+			<button id="add-btn">Add Do</button>
+		</div>
+
+		<div id="todo-container">
+		</div>
+
+	</div>
 	<script src="main.js"></script>
 </body>
 </html>
