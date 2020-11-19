@@ -5,14 +5,16 @@ import domController from './domController';
 import addTodo from './helpers';
 
 //app init
-const defaultProj = Project();
+const defaultProj = Project('default');
 Container.addProject(defaultProj);
 
 // event listeners
 domController.getAddBtn().addEventListener('click', () => {
-	addTodo(domController.getTitle(), domController.getProject());
+	addTodo(domController.getTitle(), domController.getProject(), Container.getProjects());
 	domController.clearTitle();
 });
+
+
 
 
 
