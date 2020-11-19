@@ -51,4 +51,36 @@ describe('testing functionality of todo factory function', () => {
 		expect(() => todoTest.setPriority(1)).not.toThrow();
 	})
 
+	it('setComplete should set correct boolean value', () => {
+		expect(todoTest.setComplete(true)).toBe(true);
+		expect(todoTest.setComplete(false)).toBe(false);
+	})
+	
+	it('setComplete should throw error if non-bool used', () => {
+		expect(() => todoTest.setComplete(true)).not.toThrow();
+		expect(() => todoTest.setComplete(5)).toThrow();
+	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 })

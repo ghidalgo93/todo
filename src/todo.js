@@ -1,5 +1,6 @@
 function Todo(title = '', description = '', dueDate = null, priority = 3){
 	let _title = title;
+	let _complete = false;
 	let _description = description;
 	let _dueDate = dueDate;
 	let _priority = priority;
@@ -11,6 +12,14 @@ function Todo(title = '', description = '', dueDate = null, priority = 3){
 		}
 		return _title = newTitle; 
 	}	
+	const getComplete = () => _complete; 
+	const setComplete = (bool) => {
+		if (typeof bool !== "boolean") {
+			throw TypeError('complete must be a boolean value');
+		}
+		bool ? _complete = true : _complete = false;
+		return _complete;
+	}
 	const getDescription = () => _description;
 	const setDescription = (newDesc) => {
 		if (typeof newDesc !== "string"){
@@ -36,6 +45,8 @@ function Todo(title = '', description = '', dueDate = null, priority = 3){
 	return {
 		getTitle,
 		setTitle, 
+		getComplete,
+		setComplete, 
 		getDescription,
 		setDescription, 
 		getDueDate,
