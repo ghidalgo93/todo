@@ -30,19 +30,17 @@ const domController = (() => {
 	const renderContainer = (container) => {
 		let projects = container.getProjects();
 
-		for (let p of projects) {
+		for (let project of projects) {
 			let ul = document.createElement('ul');
-			ul.id = p.getTitle();
-			ul.innerHTML = p.getTitle();
+			ul.innerHTML = project.getTitle();
 			_todoContainer.appendChild(ul);
-			for (let t of p.getList()){
+			for (let todo of project.getList()){
 				let li = document.createElement('li');
-				li.innerHTML = t.getTitle();
+				li.innerHTML = todo.getTitle();
 				ul.appendChild(li);
 			}
 		}
-	}
-
+	} 
 	return {
 		getAddBtn,
 		getTitleStr, 
