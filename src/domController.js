@@ -14,7 +14,8 @@ const domController = (() => {
 	const _addBtn = document.getElementById('add-btn');
 	const getAddBtn = () => _addBtn;
 	const _todoContainer = document.getElementById('todo-container');
-
+	const _addProjectBtn = document.getElementById('add-project');
+	const getAddProjectBtn = () => _addProjectBtn;
 
 	const updateDom = (container) => {
 		resetInputs();
@@ -24,6 +25,7 @@ const domController = (() => {
 
 	const resetInputs = () => {
 		clearTitle();
+		//add all projects to pulldown: is this the correct place to put it????
 		//reset select to main project
 	}	
 
@@ -43,6 +45,7 @@ const domController = (() => {
 	} 
 	return {
 		getAddBtn,
+		getAddProjectBtn, 
 		getTitleStr, 
 		getProjectStr,
 		updateDom

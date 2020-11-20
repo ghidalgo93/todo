@@ -5,12 +5,12 @@ import domController from './domController';
 import addTodo from './helpers';
 
 //app init
-const main = Project('main');
-Container.addProject(main);
+const defaultProject = Project('main');
+Container.addProject(defaultProject);
 
 // event listeners
 domController.getAddBtn().addEventListener('click', () => {
-	//Add new do
+	//helper function: AddTodo?
 	let newDo = Todo(domController.getTitleStr()); 
 	let projects = Container.getProjects();
 	let project = projects.find(x => x.getTitle() === domController.getProjectStr());
@@ -19,7 +19,11 @@ domController.getAddBtn().addEventListener('click', () => {
 	domController.updateDom(Container);
 });
 
-
+domController.getAddProjectBtn().addEventListener('click', () => {
+	//helper function: addProject? 
+	Container.addProject(Project(prompt("New project name: ")));
+	domController.updateDom(Container);
+})
 
 
 
