@@ -5,22 +5,18 @@ import domController from './domController';
 import addTodo from './helpers';
 
 //app init
-const defaultProject = Project('defaultProject');
-Container.addProject(defaultProject);
+const main = Project('main');
+Container.addProject(main);
 
 // event listeners
 domController.getAddBtn().addEventListener('click', () => {
-	//create todo
+	//Add new do
 	let newDo = Todo(domController.getTitleStr()); 
-	//get project
 	let projects = Container.getProjects();
 	let project = projects.find(x => x.getTitle() === domController.getProjectStr());
-	//add todo to project
-	console.log(project.getList());
 	project.addTodo(newDo);
-	console.log(project.getList());
-	//clear inputs
-	domController.clearTitle();
+	//update dom 
+	domController.updateDom(Container);
 });
 
 

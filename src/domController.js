@@ -1,3 +1,5 @@
+import {removeAllChildNodes} from './helpers';
+
 const domController = (() => {
 	const _headline = document.getElementById('headline');
 	const _newTodoField = document.getElementById('new-todo-field');
@@ -14,25 +16,38 @@ const domController = (() => {
 	const _todoContainer = document.getElementById('todo-container');
 
 
-	//const addProjeCt = () => {
-	//	//get text input value for new project title
-	//	//reset the text input
-	//	//create new project object
-	//	//updateDom
-	//}
+	const updateDom = (container) => {
+		resetInputs();
+		removeAllChildNodes(_todoContainer);
+		renderContainer(container);
+	}
 
-	//const updateDom = () => {
-	//	//
-	//}
+	const resetInputs = () => {
+		clearTitle();
+		//reset select to main project
+	}	
 
-	//event listeners
-	// _addBtn.addEventListener('click', addTodo, false);
+	const renderContainer = (container) => {
+		let projects = container.getProjects();
+
+		for (let p of projects) {
+			let ul = document.createElement('ul');
+			ul.id = p.getTitle();
+			ul.innerHTML = p.getTitle();
+			_todoContainer.appendChild(ul);
+			for (let t of p.getList()){
+				let li = document.createElement('li');
+				li.innerHTML = t.getTitle();
+				ul.appendChild(li);
+			}
+		}
+	}
 
 	return {
 		getAddBtn,
 		getTitleStr, 
-		clearTitle, 
-		getProjectStr
+		getProjectStr,
+		updateDom
 	}
 })();
 
