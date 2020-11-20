@@ -3,11 +3,11 @@ const domController = (() => {
 	const _newTodoField = document.getElementById('new-todo-field');
 	// const _todoLbl = document.getElementById('todo-label');
 	const _todoInp = document.getElementById('todo-item');
-	const getTitle = () => _todoInp.value;
+	const getTitleStr = () => _todoInp.value;
 	const clearTitle = () => _todoInp.value = '';
 	// const _projectLbl = document.getElementById('project-label');
 	const _projectPullDwn = document.getElementById('project-pulldown'); 
-	const getProject = () => _projectPullDwn.value;
+	const getProjectStr = () => _projectPullDwn.value;
 	const _projectDefault = document.getElementById('project-default');
 	const _addBtn = document.getElementById('add-btn');
 	const getAddBtn = () => _addBtn;
@@ -30,9 +30,9 @@ const domController = (() => {
 
 	return {
 		getAddBtn,
-		getTitle, 
+		getTitleStr, 
 		clearTitle, 
-		getProject
+		getProjectStr
 	}
 })();
 

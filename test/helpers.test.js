@@ -1,6 +1,12 @@
-import * from '../src/helpers';
+import Project from '../src/project';
+import {addProject} from '../src/helpers';
 
 
 describe('testing helper functionality for app logic', () => {
-	it('addTodo should create/return a new todo object')
+	beforeEach(() => {
+	})
+
+	it('addTodoToPoject should return an updated project with length of 1', () => {
+
+	})
 })
