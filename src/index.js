@@ -10,17 +10,15 @@ Container.addProject(defaultProject);
 
 // event listeners
 domController.getAddBtn().addEventListener('click', () => {
-	//helper function: AddTodo?
-	let newDo = Todo(domController.getTitleStr()); 
-	let projects = Container.getProjects();
-	let project = projects.find(x => x.getTitle() === domController.getProjectStr());
-	project.addTodo(newDo);
-	//update dom 
+	let newTodo = Todo(domController.getTodoTitle()); 
+	let project = Container.getProjectByTitle(domController.getProjectStr());
+	if (project){
+		project.addTodo(newTodo);
+	}
 	domController.updateDom(Container);
 });
 
 domController.getAddProjectBtn().addEventListener('click', () => {
-	//helper function: addProject? 
 	Container.addProject(Project(prompt("New project name: ")));
 	domController.updateDom(Container);
 })

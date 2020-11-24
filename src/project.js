@@ -1,21 +1,23 @@
 function Project(title = ''){
 	let _title = title; 
-	let _list = [];
+	let _toDos = [];
 
+	const setTitle = (newTitle) => _title = newTitle;
 	const getTitle = () => _title;
-	const getList = () => _list;
+	const getTodos = () => _toDos;
 	const addTodo = (todoItem) => {
-		_list.push(todoItem);
-		return _list;
+		_toDos.push(todoItem);
+		return _toDos;
 	}
 	const removeTodo = (todoItem) => {
-		_list = _list.filter(item => item !== todoItem); 
-		return _list;
+		_toDos = _toDos.filter(item => item !== todoItem); 
+		return _toDos;
 	}
 
 	return {
+		setTitle,
 		getTitle,
-		getList, 
+		getTodos, 
 		addTodo,
 		removeTodo
 	}

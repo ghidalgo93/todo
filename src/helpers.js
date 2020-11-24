@@ -6,6 +6,7 @@ function removeAllChildNodes(parent){
 	}
 };
 
+
 export {
 	removeAllChildNodes
 }

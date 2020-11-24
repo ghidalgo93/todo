@@ -12,23 +12,27 @@ describe('testing functionality of project factory function', () => {
 	it('should instantiate a default project object', () => {
 		expect(projTest.getTitle()).toBe('');
 	})
+	
+	it('setTitle should set the title of the project object', () => {
+		expect(projTest.setTitle('newTestTitle')).toBe('newTestTitle');
+	})
 
-	it('getList should return an empty list at instantiation', () => {
-		expect(projTest.getList()).toEqual([]);
-		expect(projTest.getList().length).toBe(0);
+	it('getTodos should return an empty list at instantiation', () => {
+		expect(projTest.getTodos()).toEqual([]);
+		expect(projTest.getTodos().length).toBe(0);
 	})
 
 	it('addTodo should add a single todo object to project list', () => {
 		expect(projTest.addTodo(todoTest1)).toEqual([todoTest1]);
-		expect(projTest.getList().length).toBe(1);
+		expect(projTest.getTodos().length).toBe(1);
 	})
 
 	it('removeTodo should remove a single todo object from project list', () => {
 		projTest.addTodo(todoTest1);
 		projTest.addTodo(todoTest2);
 		expect(projTest.removeTodo(todoTest2)).toEqual([todoTest1]);
-		expect(projTest.getList().length).toBe(1);
+		expect(projTest.getTodos().length).toBe(1);
 		expect(projTest.removeTodo(todoTest1)).toEqual([]);
-		expect(projTest.getList().length).toBe(0);
+		expect(projTest.getTodos().length).toBe(0);
 	})
 })

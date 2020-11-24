@@ -5,8 +5,8 @@ const domController = (() => {
 	const _newTodoField = document.getElementById('new-todo-field');
 	// const _todoLbl = document.getElementById('todo-label');
 	const _todoInp = document.getElementById('todo-item');
-	const getTitleStr = () => _todoInp.value;
-	const clearTitle = () => _todoInp.value = '';
+	const getTodoTitle = () => _todoInp.value;
+	const clearTodoTitle = () => _todoInp.value = '';
 	// const _projectLbl = document.getElementById('project-label');
 	const _projectPullDwn = document.getElementById('project-pulldown'); 
 	const getProjectStr = () => _projectPullDwn.value;
@@ -24,7 +24,7 @@ const domController = (() => {
 	}
 
 	const resetInputs = () => {
-		clearTitle();
+		clearTodoTitle();
 		//add all projects to pulldown: is this the correct place to put it????
 		//reset select to main project
 	}	
@@ -36,7 +36,7 @@ const domController = (() => {
 			let ul = document.createElement('ul');
 			ul.innerHTML = project.getTitle();
 			_todoContainer.appendChild(ul);
-			for (let todo of project.getList()){
+			for (let todo of project.getTodos()){
 				let li = document.createElement('li');
 				li.innerHTML = todo.getTitle();
 				ul.appendChild(li);
@@ -46,7 +46,7 @@ const domController = (() => {
 	return {
 		getAddBtn,
 		getAddProjectBtn, 
-		getTitleStr, 
+		getTodoTitle, 
 		getProjectStr,
 		updateDom
 	}
