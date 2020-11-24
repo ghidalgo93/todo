@@ -1,4 +1,9 @@
-function Project(title = ''){
+import {isRequired} from './helpers';
+
+function Project(title = isRequired('title')){
+	if( title === ''){
+		throw Error('project must have title');
+	}
 	let _title = title; 
 	let _toDos = [];
 

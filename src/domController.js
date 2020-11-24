@@ -9,27 +9,38 @@ const domController = (() => {
 	const clearTodoTitle = () => _todoInp.value = '';
 	// const _projectLbl = document.getElementById('project-label');
 	const _projectPullDwn = document.getElementById('project-pulldown'); 
-	const getProjectStr = () => _projectPullDwn.value;
+	const getProjectTitle = () => _projectPullDwn.value;
 	const _projectDefault = document.getElementById('project-default');
 	const _addBtn = document.getElementById('add-btn');
-	const getAddBtn = () => _addBtn;
+	const getAddTodoBtn = () => _addBtn;
 	const _todoContainer = document.getElementById('todo-container');
 	const _addProjectBtn = document.getElementById('add-project');
 	const getAddProjectBtn = () => _addProjectBtn;
 
 	const updateDom = (container) => {
-		resetInputs();
+		resetInputs(container);
 		removeAllChildNodes(_todoContainer);
-		renderContainer(container);
+		renderTodos(container);
 	}
 
-	const resetInputs = () => {
+	const resetInputs = (container) => {
 		clearTodoTitle();
-		//add all projects to pulldown: is this the correct place to put it????
-		//reset select to main project
+		removeAllChildNodes(_projectPullDwn);
+		addProjectsToPullDown(container);
 	}	
 
-	const renderContainer = (container) => {
+	const addProjectsToPullDown = (container) => {
+		let projects = container.getProjects();
+
+		for (let project of projects){
+			let option = document.createElement('option');
+			option.value = project.getTitle(); 
+			option.innerHTML = project.getTitle();
+			_projectPullDwn.appendChild(option);
+		}
+	}
+
+	const renderTodos = (container) => {
 		let projects = container.getProjects();
 
 		for (let project of projects) {
@@ -43,11 +54,12 @@ const domController = (() => {
 			}
 		}
 	} 
+
 	return {
-		getAddBtn,
+		getAddTodoBtn,
 		getAddProjectBtn, 
 		getTodoTitle, 
-		getProjectStr,
+		getProjectTitle,
 		updateDom
 	}
 })();

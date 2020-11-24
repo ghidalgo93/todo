@@ -4,13 +4,21 @@ import Todo from '../src/todo';
 describe('testing functionality of project factory function', () => {
 	let projTest, todoTest1, todoTest2;
 	beforeEach(function(){
-		projTest = Project();
-		todoTest1 = Todo();
-		todoTest2 = Todo();
+		projTest = Project('testProj');
+		todoTest1 = Todo('test1');
+		todoTest2 = Todo('test2');
 	})
 
 	it('should instantiate a default project object', () => {
-		expect(projTest.getTitle()).toBe('');
+		expect(projTest.getTitle()).toBe('testProj');
+	})
+
+	it('should throw error if instantiated without title', () => {
+		expect(() => failProj = Project()).toThrow()
+	})
+
+	it('should throw error if instantiated with empty title', () => {
+		expect(() => failProj = Project('')).toThrow();
 	})
 	
 	it('setTitle should set the title of the project object', () => {
@@ -25,6 +33,10 @@ describe('testing functionality of project factory function', () => {
 	it('addTodo should add a single todo object to project list', () => {
 		expect(projTest.addTodo(todoTest1)).toEqual([todoTest1]);
 		expect(projTest.getTodos().length).toBe(1);
+	})
+
+	it('addTodo should throw error if todo object not instantiated ', () => {
+		expect(() => projTest.addTodo(Todo())).toThrow();
 	})
 
 	it('removeTodo should remove a single todo object from project list', () => {

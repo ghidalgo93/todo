@@ -7,7 +7,11 @@ const Container = (() => {
 		return _projects;
 	} 
 	const getProjectByTitle = (projectTitle) => {
-		return _projects.find(x => x.getTitle() === projectTitle);
+		let foundProj = _projects.find(x => x.getTitle() === projectTitle); 
+		if (foundProj === undefined){
+			throw Error('project does not exist');
+		}
+		return foundProj;
 	}
 	const removeProject = (projectToRemove) => {
 		_projects = _projects.filter(project => project !== projectToRemove);

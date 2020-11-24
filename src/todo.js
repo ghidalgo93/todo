@@ -1,4 +1,9 @@
-function Todo(title = '', description = '', dueDate = null, priority = 3){
+import {isRequired} from './helpers';
+
+function Todo(title = isRequired('title'), description = '', dueDate = null, priority = 3){
+	if (title === ''){
+		throw Error('todo must have title');
+	}
 	let _title = title;
 	let _complete = false;
 	let _description = description;

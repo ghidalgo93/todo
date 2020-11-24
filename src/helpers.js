@@ -6,9 +6,13 @@ function removeAllChildNodes(parent){
 	}
 };
 
+const isRequired = (param) => { 
+	throw Error(`${param} is required`)
+}
 
 export {
-	removeAllChildNodes
+	removeAllChildNodes,
+	isRequired
 }
 
 

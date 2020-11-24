@@ -7,21 +7,19 @@ import addTodo from './helpers';
 //app init
 const defaultProject = Project('main');
 Container.addProject(defaultProject);
+domController.updateDom(Container);
 
 // event listeners
-domController.getAddBtn().addEventListener('click', () => {
-	let newTodo = Todo(domController.getTodoTitle()); 
-	let project = Container.getProjectByTitle(domController.getProjectStr());
-	if (project){
-		project.addTodo(newTodo);
-	}
+domController.getAddTodoBtn().addEventListener('click', () => {
+	let project = Container.getProjectByTitle(domController.getProjectTitle());
+	project.addTodo(Todo(domController.getTodoTitle()));
 	domController.updateDom(Container);
 });
 
 domController.getAddProjectBtn().addEventListener('click', () => {
-	Container.addProject(Project(prompt("New project name: ")));
+	let projectName = Project(prompt('New project name: '))
+	Container.addProject(projectName);
 	domController.updateDom(Container);
 })
-
 
 

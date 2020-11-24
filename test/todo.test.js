@@ -1,15 +1,24 @@
 import Todo from '../src/todo'; 
+
 describe('testing functionality of todo factory function', () => {
 	let todoTest;
 	beforeEach(function(){
-		todoTest = Todo();
+		todoTest = Todo('title');
 	})
 
 	it('should instantiate a default todo object (test getters)', () => {
-		expect(todoTest.getTitle()).toBe('');
+		expect(todoTest.getTitle()).toBe('title');
 		expect(todoTest.getDescription()).toBe('');
 		expect(todoTest.getDueDate()).toBe(null);
 		expect(todoTest.getPriority()).toBe(3);
+	})
+
+	it('if instantiated without title it should throw error', () => {
+		expect(() => failTest = Todo()).toThrow();
+	})
+	
+	it('if instantiated with an empty string it should throw error', () => {
+		expect(() => failTest = Todo('')).toThrow();
 	})
 	
 	it('should set title', () => {

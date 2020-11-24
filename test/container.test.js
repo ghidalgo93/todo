@@ -4,7 +4,7 @@ import Project from '../src/project';
 describe('testing functionality of container module', () => {
 	let testProject1; 
 	beforeEach(function() {
-		testProject1 = Project(); 
+		testProject1 = Project('testProj'); 
 		Container.clearAll();
 	})
 	
@@ -18,6 +18,10 @@ describe('testing functionality of container module', () => {
 		expect(Container.getProjects().length).toBe(1);
 	})
 
+	it('addProject should throw error if project without title given', () => {
+		expect(() => Container.addProject(Project())).toThrow();	
+	})
+
 	it('removeProject should remove a project from the project array', () => {
 		Container.addProject(testProject1);
 		expect(Container.removeProject(testProject1)).toEqual([]);
@@ -29,8 +33,8 @@ describe('testing functionality of container module', () => {
 		expect(Container.getProjectByTitle('testProj')).toBe(testProject1);
 	})
 	
-	it('getProjectByTitle should return undefined if project dne', () => {
-		expect(Container.getProjectByTitle('testProj')).toBe(undefined);
+	it('getProjectByTitle should throw errror if project dne', () => {
+		expect(() => Container.getProjectByTitle('testProj')).toThrow();
 	})
 	
 })
