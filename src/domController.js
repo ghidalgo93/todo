@@ -20,7 +20,8 @@ const domController = (() => {
 	const updateDom = (container) => {
 		resetInputs(container);
 		removeAllChildNodes(_todoContainer);
-		renderTodos(container);
+		// renderTodos(container);
+		renderTable(container);
 	}
 
 	const resetInputs = (container) => {
@@ -54,6 +55,32 @@ const domController = (() => {
 			}
 		}
 	} 
+
+	const renderTable = (container) => {
+		let projects = container.getProjects();
+		console.log(projects);
+
+		for (let project in projects){
+			let table = document.createElement('table');
+			let thead = document.createElement('thead');
+			let tbody = document.createElement('tbody');
+			let projectRow = document.createElement('tr');
+			let projectTitle = document.createElement('th');
+
+			projectTitle.innerHTML = project.getTitle();
+			projectRow.appendChild(projectTitle);
+			thead.appendChild(projectRow);
+			for (let todo of project.getTodos()){
+				let todoRow = document.createElement('tr');
+				let todoTitle = document.createElement('td')
+				todoTitle.innerHTML = todo.getTitle();
+				todoRow.appendChild(todoTitle);
+				tbody.appendChild(todoRow);
+			}
+			table.appendChild(thead);
+			table.appendChild(tbody);
+		}
+	}
 
 	return {
 		getAddTodoBtn,
