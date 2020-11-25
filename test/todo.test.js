@@ -9,7 +9,7 @@ describe('testing functionality of todo factory function', () => {
 	it('should instantiate a default todo object (test getters)', () => {
 		expect(todoTest.getTitle()).toBe('title');
 		expect(todoTest.getDescription()).toBe('');
-		expect(todoTest.getDueDate()).toBe(null);
+		expect(todoTest.getDueDate()).toBe(undefined);
 		expect(todoTest.getPriority()).toBe(3);
 	})
 
@@ -41,14 +41,8 @@ describe('testing functionality of todo factory function', () => {
 		expect(() => todoTest.setDescription('test')).not.toThrow();
 	})
 
-	it('should get default dueDate equal to null', () => {
-		expect(todoTest.getDueDate()).toBe(null);
-	})
-
-	it('setDue date should throw error when non-date obj is used', () => {
-		let today = new Date();
-		expect(() => todoTest.setDueDate(today)).not.toThrow();
-		expect(() => todoTest.setDueDate(5)).toThrow();
+	it('should get default dueDate equal to undefined', () => {
+		expect(todoTest.getDueDate()).toBe(undefined);
 	})
 
 	it('getPriority should get the default of 3', () => {

@@ -1,19 +1,21 @@
 import {removeAllChildNodes} from './helpers';
 
 const domController = (() => {
-	const _headline = document.getElementById('headline');
-	const _newTodoField = document.getElementById('new-todo-field');
-	// const _todoLbl = document.getElementById('todo-label');
+	const _todoContainer = document.getElementById('todo-container');
+
 	const _todoInp = document.getElementById('todo-item');
 	const getTodoTitle = () => _todoInp.value;
 	const clearTodoTitle = () => _todoInp.value = '';
-	// const _projectLbl = document.getElementById('project-label');
+
+	const _todoDuedate = document.getElementById('todo-duedate');
+	const getDuedate = () => _todoDuedate.value;
+
 	const _projectPullDwn = document.getElementById('project-pulldown'); 
 	const getProjectTitle = () => _projectPullDwn.value;
-	const _projectDefault = document.getElementById('project-default');
+
 	const _addBtn = document.getElementById('add-btn');
 	const getAddTodoBtn = () => _addBtn;
-	const _todoContainer = document.getElementById('todo-container');
+
 	const _addProjectBtn = document.getElementById('add-project');
 	const getAddProjectBtn = () => _addProjectBtn;
 
@@ -58,10 +60,13 @@ const domController = (() => {
 				todoCheck.setAttribute('type', 'checkbox');
 				let todoTitle = document.createElement('td');
 				todoTitle.innerHTML = todo.getTitle();
+				let todoDuedate = document.createElement('td');
+				todoDuedate.innerHTML = todo.getDueDate();
 				let removeTodo = document.createElement('button');
 				removeTodo.innerHTML = 'x';
 				todoRow.appendChild(todoCheck);
 				todoRow.appendChild(todoTitle);
+				todoRow.appendChild(todoDuedate);
 				todoRow.appendChild(removeTodo);
 				tbody.appendChild(todoRow);
 			}
@@ -78,6 +83,7 @@ const domController = (() => {
 		getAddTodoBtn,
 		getAddProjectBtn, 
 		getTodoTitle, 
+		getDuedate,
 		getProjectTitle,
 		updateDom
 	}

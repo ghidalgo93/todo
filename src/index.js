@@ -12,7 +12,9 @@ domController.updateDom(Container);
 // event listeners
 domController.getAddTodoBtn().addEventListener('click', () => {
 	let project = Container.getProjectByTitle(domController.getProjectTitle());
-	project.addTodo(Todo(domController.getTodoTitle()));
+	let todo = Todo(domController.getTodoTitle());
+	todo.setDueDate(domController.getDuedate());
+	project.addTodo(todo);
 	domController.updateDom(Container);
 });
 

@@ -1,6 +1,7 @@
 import {isRequired} from './helpers';
+import {format} from 'date-fns';
 
-function Todo(title = isRequired('title'), description = '', dueDate = null, priority = 3){
+function Todo(title = isRequired('title'), description = '', dueDate = undefined, priority = 3){
 	if (title === ''){
 		throw Error('todo must have title');
 	}
@@ -34,9 +35,7 @@ function Todo(title = isRequired('title'), description = '', dueDate = null, pri
 	}
 	const getDueDate = () => _dueDate;
 	const setDueDate = (newDate) => {
-		if (newDate instanceof Date === false){
-			throw TypeError('due date must be a date object');
-		}
+		format(new Date(), newDate);
 		return _dueDate = newDate;
 	}
 	const getPriority = () => _priority;
