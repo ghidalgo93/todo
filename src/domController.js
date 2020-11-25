@@ -20,17 +20,16 @@ const domController = (() => {
 	const updateDom = (container) => {
 		resetInputs(container);
 		removeAllChildNodes(_todoContainer);
-		// renderTodos(container);
-		renderTable(container);
+		renderTodosTable(container);
 	}
 
 	const resetInputs = (container) => {
 		clearTodoTitle();
 		removeAllChildNodes(_projectPullDwn);
-		addProjectsToPullDown(container);
+		renderProjectsPulldown(container);
 	}	
 
-	const addProjectsToPullDown = (container) => {
+	const renderProjectsPulldown = (container) => {
 		let projects = container.getProjects();
 
 		for (let project of projects){
@@ -41,44 +40,40 @@ const domController = (() => {
 		}
 	}
 
-	const renderTodos = (container) => {
+
+	const renderTodosTable = (container) => {
 		let projects = container.getProjects();
 
-		for (let project of projects) {
-			let ul = document.createElement('ul');
-			ul.innerHTML = project.getTitle();
-			_todoContainer.appendChild(ul);
-			for (let todo of project.getTodos()){
-				let li = document.createElement('li');
-				li.innerHTML = todo.getTitle();
-				ul.appendChild(li);
-			}
-		}
-	} 
-
-	const renderTable = (container) => {
-		let projects = container.getProjects();
-		console.log(projects);
-
-		for (let project in projects){
+		for (let project of projects){
 			let table = document.createElement('table');
 			let thead = document.createElement('thead');
 			let tbody = document.createElement('tbody');
 			let projectRow = document.createElement('tr');
 			let projectTitle = document.createElement('th');
-
 			projectTitle.innerHTML = project.getTitle();
-			projectRow.appendChild(projectTitle);
-			thead.appendChild(projectRow);
+
 			for (let todo of project.getTodos()){
 				let todoRow = document.createElement('tr');
-				let todoTitle = document.createElement('td')
+				let todoCheck = document.createElement('input');
+				todoCheck.setAttribute('type', 'checkbox');
+				let todoTitle = document.createElement('td');
 				todoTitle.innerHTML = todo.getTitle();
+				let todoDesc = document.createElement('td');
+				todoDesc.innerHTML = todo.getDescription();
+				let todoDue = document.createElement('input');
+				todoDue.setAttribute('type', 'date');
+				todoRow.appendChild(todoCheck);
 				todoRow.appendChild(todoTitle);
+				todoRow.appendChild(todoDesc);
+				todoRow.appendChild(todoDue);
 				tbody.appendChild(todoRow);
 			}
+
+			projectRow.appendChild(projectTitle);
+			thead.appendChild(projectRow);
 			table.appendChild(thead);
 			table.appendChild(tbody);
+			_todoContainer.appendChild(table);
 		}
 	}
 
