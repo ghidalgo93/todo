@@ -58,11 +58,14 @@ const domController = (() => {
 
 			for (let todo of project.getTodos()){
 				let todoRow = document.createElement('tr');
+				todoRow.dataset.title = todo.getTitle();
 				let todoCheck = document.createElement('input');
 				todoCheck.setAttribute('type', 'checkbox');
 				let todoTitle = document.createElement('td');
 				todoTitle.innerHTML = todo.getTitle();
 				let removeTodo = document.createElement('button');
+				removeTodo.dataset.title = todo.getTitle();
+				removeTodo.classList.add('remove-btn');
 				removeTodo.innerHTML = 'x';
 				todoRow.appendChild(todoCheck);
 				todoRow.appendChild(todoTitle);
@@ -82,6 +85,7 @@ const domController = (() => {
 			_todoContainer.appendChild(table);
 		}
 	}
+	
 
 	return {
 		getAddTodoBtn,
