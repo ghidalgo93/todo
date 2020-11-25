@@ -58,14 +58,11 @@ const domController = (() => {
 				todoCheck.setAttribute('type', 'checkbox');
 				let todoTitle = document.createElement('td');
 				todoTitle.innerHTML = todo.getTitle();
-				let todoDesc = document.createElement('td');
-				todoDesc.innerHTML = todo.getDescription();
-				let todoDue = document.createElement('input');
-				todoDue.setAttribute('type', 'date');
+				let removeTodo = document.createElement('button');
+				removeTodo.innerHTML = 'x';
 				todoRow.appendChild(todoCheck);
 				todoRow.appendChild(todoTitle);
-				todoRow.appendChild(todoDesc);
-				todoRow.appendChild(todoDue);
+				todoRow.appendChild(removeTodo);
 				tbody.appendChild(todoRow);
 			}
 
