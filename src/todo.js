@@ -35,7 +35,9 @@ function Todo(title = isRequired('title'), description = '', dueDate = undefined
 	}
 	const getDueDate = () => _dueDate;
 	const setDueDate = (newDate) => {
-		format(new Date(), newDate);
+		if (newDate){
+			format(new Date(), newDate);
+		}
 		return _dueDate = newDate;
 	}
 	const getPriority = () => _priority;

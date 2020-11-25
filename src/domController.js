@@ -1,6 +1,7 @@
 import {removeAllChildNodes} from './helpers';
 
 const domController = (() => {
+	//dom elements
 	const _todoContainer = document.getElementById('todo-container');
 
 	const _todoInp = document.getElementById('todo-item');
@@ -19,6 +20,7 @@ const domController = (() => {
 	const _addProjectBtn = document.getElementById('add-project');
 	const getAddProjectBtn = () => _addProjectBtn;
 
+	//dom manipulation functions
 	const updateDom = (container) => {
 		resetInputs(container);
 		removeAllChildNodes(_todoContainer);
@@ -60,13 +62,15 @@ const domController = (() => {
 				todoCheck.setAttribute('type', 'checkbox');
 				let todoTitle = document.createElement('td');
 				todoTitle.innerHTML = todo.getTitle();
-				let todoDuedate = document.createElement('td');
-				todoDuedate.innerHTML = todo.getDueDate();
 				let removeTodo = document.createElement('button');
 				removeTodo.innerHTML = 'x';
 				todoRow.appendChild(todoCheck);
 				todoRow.appendChild(todoTitle);
-				todoRow.appendChild(todoDuedate);
+				if (todo.getDueDate()){
+					let todoDuedate = document.createElement('td');
+					todoDuedate.innerHTML = `due: ${todo.getDueDate()}`;
+					todoRow.appendChild(todoDuedate);
+				}
 				todoRow.appendChild(removeTodo);
 				tbody.appendChild(todoRow);
 			}
