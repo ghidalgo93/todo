@@ -1,0 +1,12 @@
+#project-sidebar {
+  width: 10em;
+}
+
+.row-container {
+  display: flex;
+}
+
+.col-container {
+  display: flex;
+  flex-flow: column;
+}
