@@ -1,20 +1,27 @@
-// import { removeAllChildNodes } from "./helpers";
+import { updateProjects, validateString, removeAllChildNodes } from "./helpers";
+import Todo from "./todo";
+import Project from "./project";
+import Container from "./container";
 
 const domController = (() => {
+  // init
+  const homeProject = Project("Home");
+  Container.addProject(homeProject);
+
   // dom elements
-  const addProjectBtn = document.getElementById("add-project");
+  const addProjectInput = document.getElementById("add-project");
 
   // dom manipulation
-  function projectInput() {
-    // open up a text bar for new project name with submit btn
-    const input = document.createElement("input");
-    document.getElementById("project-sidebar").appendChild(input);
-    // if submitted
-    // add project to container
-    // update dom
+  function addProject(e, projectContainter) {
+    if (e.key === "Enter") {
+      const projectName = validateString(e);
+      projectContainter.addProject(Project(projectName));
+      updateProjects(projectContainter);
+      e.target.value = "";
+    }
   }
 
-  addProjectBtn.addEventListener("click", projectInput, false);
+  addProjectInput.addEventListener("keydown", (e) => addProject(e, Container));
 
   return {};
 })();
