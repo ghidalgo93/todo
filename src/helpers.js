@@ -19,8 +19,23 @@ function validateString(e) {
 }
 
 function createProjectElem(projectObj, domProjectContainer) {
-  const projectElem = document.createElement("li");
-  projectElem.innerHTML = projectObj.getTitle();
+  const projectElem = document.createElement("div");
+  projectElem.classList.add("row-container");
+
+  const projectTitle = document.createElement("li");
+  projectTitle.innerHTML = projectObj.getTitle();
+  projectTitle.classList.add("projectTitle");
+  projectTitle.dataset.title = projectObj.getTitle();
+  projectElem.appendChild(projectTitle);
+
+  if (projectObj.getTitle() !== "Home") {
+    const removeBtn = document.createElement("button");
+    removeBtn.innerHTML = "x";
+    removeBtn.classList.add("removeProject");
+    removeBtn.dataset.title = projectObj.getTitle();
+    projectElem.appendChild(removeBtn);
+  }
+
   domProjectContainer.appendChild(projectElem);
 }
 
@@ -32,4 +47,26 @@ function updateProjects(projectContainter) {
   });
 }
 
-export { updateProjects, removeAllChildNodes, isRequired, validateString };
+function createTodoElem(todoObj, domTodoContainer) {
+  const todoElem = document.createElement("div");
+  todoElem.classList.add("row-container");
+
+  const todoTitle = document.createElement("li");
+  // TODO
+}
+
+function showTodos(todos) {
+  const domTodos = document.getElementById("todos");
+  removeAllChildNodes(domTodos);
+  todos.forEach((todo) => {
+    createTodoElem(todo, domTodos);
+  });
+}
+
+export {
+  showTodos,
+  updateProjects,
+  removeAllChildNodes,
+  isRequired,
+  validateString,
+};
