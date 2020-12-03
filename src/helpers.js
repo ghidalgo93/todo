@@ -20,6 +20,7 @@ function validateString(e) {
 
 function createProjectElem(projectObj, domProjectContainer) {
   const projectElem = document.createElement("div");
+  projectElem.dataset.title = projectObj.getTitle();
   projectElem.classList.add("row-container");
 
   const projectTitle = document.createElement("li");
@@ -37,22 +38,26 @@ function createProjectElem(projectObj, domProjectContainer) {
   }
 
   domProjectContainer.appendChild(projectElem);
+  return projectElem;
 }
 
-function updateProjects(projectContainter) {
-  const domProjects = document.getElementById("projects");
-  removeAllChildNodes(domProjects);
-  projectContainter.getProjects().forEach((project) => {
-    createProjectElem(project, domProjects);
-  });
-}
+// function updateProjects(projectContainter) {
+//   const domProjects = document.getElementById("projects");
+//   removeAllChildNodes(domProjects);
+//   projectContainter.getProjects().forEach((project) => {
+//     createProjectElem(project, domProjects);
+//   });
+// }
 
 function createTodoElem(todoObj, domTodoContainer) {
   const todoElem = document.createElement("div");
   todoElem.classList.add("row-container");
 
   const todoTitle = document.createElement("li");
-  // TODO
+  todoTitle.textContent = todoObj.getTitle();
+  todoElem.appendChild(todoTitle);
+
+  domTodoContainer.appendChild(todoElem);
 }
 
 function showTodos(todos) {
@@ -65,7 +70,7 @@ function showTodos(todos) {
 
 export {
   showTodos,
-  updateProjects,
+  createProjectElem,
   removeAllChildNodes,
   isRequired,
   validateString,

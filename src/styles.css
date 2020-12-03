@@ -1,7 +1,3 @@
-#project-sidebar {
-  width: 10em;
-}
-
 .row-container {
   display: flex;
 }
@@ -10,4 +6,12 @@
   margin: 2em;
   display: flex;
   flex-flow: column;
+}
+
+#project-sidebar {
+  width: 10em;
+}
+
+.selected-project {
+  color: red;
 }
