@@ -1,17 +1,4 @@
-.row-container {
-  display: flex;
-}
-
-.col-container {
-  margin: 2em;
-  display: flex;
-  flex-flow: column;
-}
-
-#project-sidebar {
-  width: 10em;
-}
-
-.selected-project {
-  color: red;
+html,
+body {
+  background-color: #323d59;
 }
