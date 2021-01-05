@@ -1,4 +1,15 @@
-html,
 body {
-  background-color: #323d59;
+  background-color: #72a5b6;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: #1d4574;
+  color: #fecb73;
+  font-family: "Fredoka One", cursive;
+}
+
+#content {
+  display: flex;
 }
