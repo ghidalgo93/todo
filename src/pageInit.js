@@ -1,0 +1,114 @@
+const pageInit = (() => {
+  const load = () => {
+    const app = document.getElementById("app");
+    // header
+    const header = document.createElement("header");
+    const pageTitle = document.createElement("h1");
+    pageTitle.textContent = "ToDo";
+    header.appendChild(pageTitle);
+    // content <div flex>
+    const content = document.createElement("div");
+    content.id = "content";
+    // projectsSidebar
+    const projectsSidebar = document.createElement("ul");
+    projectsSidebar.id = "projects-sidebar";
+    projectsSidebar.classList.add("container");
+    // projects
+    const projects = document.createElement("ul");
+    projects.classList.add("sub-container");
+    projects.id = "projects";
+    // addProjectsForm <form>
+    const projectForm = document.createElement("form");
+    projectForm.id = "project-form";
+
+    const projectInput = document.createElement("input");
+    projectInput.id = "project-input";
+    projectInput.type = "text";
+    projectInput.name = "projectName";
+    projectInput.placeholder = "New Project";
+
+    const addProject = document.createElement("button");
+    addProject.id = "add-project";
+    addProject.textContent = "+";
+    addProject.classList.add("clicker");
+
+    projectForm.appendChild(projectInput);
+    projectForm.appendChild(addProject);
+
+    projectsSidebar.appendChild(projects);
+    projectsSidebar.appendChild(projectForm);
+    // todosDisplay <div flex col>
+    const todosDisplay = document.createElement("div");
+    todosDisplay.classList.add("container");
+    todosDisplay.id = "todos-display";
+    // todos <ul> data=projectName
+    const todos = document.createElement("ul");
+    todos.classList.add("sub-container");
+    todos.id = "todos";
+
+    // addTodoForm <form>
+    const todoForm = document.createElement("form");
+    todoForm.id = "todo-form";
+    todosDisplay.appendChild(todos);
+    todosDisplay.appendChild(todoForm);
+
+    const todoName = document.createElement("input");
+    todoName.id = "todo-name";
+    todoName.classList.add("todo-input");
+    todoName.type = "text";
+    todoName.placeholder = "New Todo";
+
+    const todoDesc = document.createElement("input");
+    todoDesc.id = "todo-desc";
+    todoDesc.classList.add("todo-input");
+    todoDesc.type = "text";
+    todoDesc.placeholder = "Description";
+
+    const todoDate = document.createElement("input");
+    todoDate.id = "todo-date";
+    todoDate.classList.add("todo-input");
+    todoDate.type = "date";
+    todoDate.value = "Due Date";
+
+    const todoPriority = document.createElement("select");
+    todoPriority.id = "todo-priority";
+    todoPriority.classList.add("todo-input");
+    const low = document.createElement("option");
+    low.value = "low";
+    low.textContent = "low";
+    const med = document.createElement("option");
+    med.value = "medium";
+    med.textContent = "medium";
+    med.selected = true;
+    const high = document.createElement("option");
+    high.value = "high";
+    high.textContent = "high";
+    todoPriority.appendChild(low);
+    todoPriority.appendChild(med);
+    todoPriority.appendChild(high);
+
+    const todoProject = document.createElement("select");
+    todoProject.id = "todo-project-pulldown";
+    todoProject.classList.add("todo-input");
+
+    const addTodo = document.createElement("button");
+    addTodo.id = "add-todo";
+    addTodo.textContent = "+";
+    addTodo.classList.add("clicker");
+
+    todoForm.appendChild(todoName);
+    todoForm.appendChild(todoDesc);
+    todoForm.appendChild(todoDate);
+    todoForm.appendChild(todoPriority);
+    todoForm.appendChild(todoProject);
+    todoForm.appendChild(addTodo);
+
+    content.appendChild(projectsSidebar);
+    content.appendChild(todosDisplay);
+    app.appendChild(header);
+    app.appendChild(content);
+  };
+  return { load };
+})();
+
+export default pageInit;

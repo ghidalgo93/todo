@@ -1,5 +1,7 @@
 body {
   background-color: #72a5b6;
+  margin: 0;
+  font-family: "Fredoka One", cursive;
 }
 
 header {
@@ -7,9 +9,76 @@ header {
   justify-content: center;
   background-color: #1d4574;
   color: #fecb73;
-  font-family: "Fredoka One", cursive;
 }
 
 #content {
   display: flex;
+}
+
+.project {
+  color: #1d4574;
+}
+
+.selected {
+  color: #fecb73;
+}
+
+.todo {
+  color: #1d4574;
+}
+
+.container {
+  height: 500px;
+  width: 500px;
+  background-color: #fbd79b;
+  margin: 2em;
+  border: none;
+  border-radius: 10px;
+}
+
+.sub-container {
+  background-color: #72a5b6;
+  height: 100px;
+  width: 100px;
+  margin: 2em;
+  border: none;
+  border: none;
+  border-radius: 10px;
+  border-radius: 10px;
+}
+
+#project-form {
+  display: flex;
+  align-items: center;
+}
+
+#todo-form {
+  display: flex;
+  flex-flow: column;
+}
+
+.clicker {
+  color: #1d4574;
+  font-weight: bold;
+  font-size: 2em;
+  border: none;
+  background-color: #fbd79b;
+}
+
+.shake {
+  animation-name: shake;
+  animation-iteration-count: 5;
+  animation-duration: 0.1s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }
