@@ -83,13 +83,21 @@ select {
 
 .todo {
   display: flex;
+  flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
   color: #1d4574;
 }
 
+.details {
+  display: none;
+}
+.show-details {
+  display: block;
+}
+
 #todo-form {
-  display: flex;
+  display: none;
   flex-flow: column;
   width: 250px;
 }

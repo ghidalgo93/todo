@@ -31,6 +31,9 @@ const render = (() => {
       projectOption.value = proj.name;
       projectOption.textContent = proj.name;
       projectOption.dataset.name = proj.name;
+      if (proj.name === project.name) {
+        projectOption.selected = true;
+      }
       projectsPulldown.appendChild(projectOption);
     });
   };
@@ -51,16 +54,29 @@ const render = (() => {
       }
       const todoName = document.createElement("div");
       todoName.textContent = todo.name;
+      todoName.classList.add("todoName");
       const todoDate = document.createElement("div");
       todoDate.textContent = todo.dueDate;
       const todoRemove = document.createElement("button");
       todoRemove.textContent = "x";
       todoRemove.classList.add("remove-todo");
       todoRemove.dataset.name = todo.name;
+
+      const details = document.createElement("div");
+      details.classList.add("details");
+      details.dataset.details = todo.name;
+      const todoDesc = document.createElement("div");
+      todoDesc.textContent = `Description: ${todo.description}`;
+      const todoPriority = document.createElement("div");
+      todoPriority.textContent = `Priority: ${todo.priority}`;
+      details.appendChild(todoPriority);
+      details.appendChild(todoDesc);
+
       todoLi.appendChild(todoCheck);
       todoLi.appendChild(todoName);
       todoLi.appendChild(todoDate);
       todoLi.appendChild(todoRemove);
+      todoLi.appendChild(details);
       todosList.appendChild(todoLi);
     });
   };

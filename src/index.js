@@ -7,7 +7,7 @@ import "./styles.css";
 const app = (() => {
   const home = project("Home");
   const projects = [home];
-  home.addTodo(todo("laundry", "hang up clothes", "10/2/2020", "priority"));
+  // home.addTodo(todo("laundry", "hang up clothes", "10/2/2020", "high"));
   domController.renderPage(projects, home);
 
   const addProject = (topic, projectName) => {
@@ -45,13 +45,20 @@ const app = (() => {
   };
 
   const removeTodo = (topic, { projectName, todoName }) => {
+    // remove todo from selected project
     const selectedProject = projects.find((proj) => proj.name === projectName);
     const todoIndexProject = selectedProject.todos.findIndex(
       (i) => i.name === todoName
     );
     selectedProject.todos.splice(todoIndexProject, 1);
-    const todoIndexHome = home.todos.findIndex((i) => i.name === todoName);
-    home.todos.splice(todoIndexHome, 1);
+    if (projectName === "Home") {
+      // take the todo out of the other project...for later
+    }
+    if (projectName !== "Home") {
+      const todoIndexHome = home.todos.findIndex((i) => i.name === todoName);
+      home.todos.splice(todoIndexHome, 1);
+    }
+
     domController.renderPage(projects, selectedProject);
   };
 

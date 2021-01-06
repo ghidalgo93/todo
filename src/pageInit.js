@@ -52,7 +52,12 @@ const pageInit = (() => {
     // todos
     const todos = document.createElement("ul");
     todos.id = "todos";
-    // addTodoForm <form>
+    // addTodo button
+    const addBtn = document.createElement("button");
+    addBtn.id = "show-todo-form";
+    addBtn.classList.add("clicker");
+    addBtn.textContent = "+";
+    // addTodoForm
     const todoForm = document.createElement("form");
     todoForm.id = "todo-form";
     const todoName = document.createElement("input");
@@ -104,6 +109,7 @@ const pageInit = (() => {
 
     todosDisplay.appendChild(todoHeader);
     todosDisplay.appendChild(todos);
+    todosDisplay.appendChild(addBtn);
     todosDisplay.appendChild(todoForm);
 
     content.appendChild(projectsSidebar);

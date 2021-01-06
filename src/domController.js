@@ -38,6 +38,14 @@ const domController = (() => {
     PubSub.publish("SELECT_PROJECT", e.target.dataset.name);
   });
 
+  // show add todo form
+  const showTodoFormBtn = document.getElementById("show-todo-form");
+  showTodoFormBtn.onclick = (e) => {
+    const todoForm = document.getElementById("todo-form");
+    todoForm.style.display = "flex";
+    e.target.style.display = "none";
+  };
+
   // add todo
   const addTodo = document.getElementById("add-todo");
   addTodo.onclick = (e) => {
@@ -53,6 +61,8 @@ const domController = (() => {
     ];
     if (helpers.verifyInputs(inputs)) {
       PubSub.publish("ADD_TODO", inputs);
+      e.target.parentNode.style.display = "none";
+      showTodoFormBtn.style.display = "block";
       todoForm.reset();
       return inputs;
     }
@@ -68,7 +78,21 @@ const domController = (() => {
     const todoName = e.target.parentNode.dataset.name;
     PubSub.publish("REMOVE_TODO", { projectName, todoName });
   });
-
+  // select todo
+  $(todos).on("click", ".todoName", (e) => {
+    // get the details element of that project
+    const todoName = e.target.parentNode.dataset.name;
+    const details = document.querySelector(`[data-details='${todoName}']`);
+    const detailsList = document.querySelectorAll("[data-details]");
+    // add the show-details class
+    if (details.classList.contains("show-details") === false) {
+      detailsList.forEach((detail) => detail.classList.remove("show-details"));
+      details.classList.add("show-details");
+    } else if (details.classList.contains("show-details") === true) {
+      details.classList.remove("show-details");
+    }
+  });
+  // check off todo
   $(todos).on("click", ".checkbox", (e) => {
     const projectName = e.target.parentNode.dataset.proj;
     const todoName = e.target.parentNode.dataset.name;
