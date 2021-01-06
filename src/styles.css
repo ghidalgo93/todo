@@ -111,6 +111,13 @@ select {
   color: #fbd79b;
 }
 
+.checkbox::after {
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
 .shake {
   animation-name: shake;
   animation-iteration-count: 5;

@@ -3,74 +3,17 @@ import PubSub from "pubsub-js";
 import $ from "jquery";
 import pageInit from "./pageInit";
 import helpers from "./helpers";
+import render from "./render";
 
 const domController = (() => {
-  // variable to hold current project;
   pageInit.load();
 
-  const renderProjects = (projectsArray, project) => {
-    const projectsList = document.getElementById("projects");
-    const projectsPulldown = document.getElementById("todo-project-pulldown");
-    helpers.removeAllChildNodes(projectsList);
-    helpers.removeAllChildNodes(projectsPulldown);
-    projectsArray.forEach((proj) => {
-      // add each projects to the project sidebar list
-      const projectLi = document.createElement("li");
-      projectLi.classList.add("project");
-      projectLi.dataset.name = proj.name;
-
-      const projectName = document.createElement("div");
-      projectName.dataset.name = proj.name;
-      if (proj.name === project.name) {
-        projectName.classList.add("selected");
-      }
-      projectName.textContent = proj.name;
-      projectName.classList.add("project-name");
-      projectLi.appendChild(projectName);
-      if (proj.name !== "Home") {
-        const removeBtn = document.createElement("button");
-        removeBtn.textContent = "x";
-        removeBtn.classList.add("remove-project");
-        removeBtn.dataset.name = proj.name;
-        projectLi.appendChild(removeBtn);
-      }
-      projectsList.appendChild(projectLi);
-      // add all projects to the todos projects pulldown
-      const projectOption = document.createElement("option");
-      projectOption.value = proj.name;
-      projectOption.textContent = proj.name;
-      projectOption.dataset.name = proj.name;
-      projectsPulldown.appendChild(projectOption);
-    });
-  };
-  const renderTodos = (project) => {
-    const todosList = document.getElementById("todos");
-    helpers.removeAllChildNodes(todosList);
-    project.todos.forEach((todo) => {
-      const todoLi = document.createElement("li");
-      todoLi.classList.add("todo");
-      const todoCheck = document.createElement("input");
-      todoCheck.type = "checkbox";
-      const todoName = document.createElement("div");
-      todoName.textContent = todo.name;
-      const todoDate = document.createElement("div");
-      todoDate.textContent = todo.dueDate;
-      const todoRemove = document.createElement("button");
-      todoRemove.textContent = "x";
-      todoRemove.classList.add("remove-todo");
-      todoLi.appendChild(todoCheck);
-      todoLi.appendChild(todoName);
-      todoLi.appendChild(todoDate);
-      todoLi.appendChild(todoRemove);
-      todosList.appendChild(todoLi);
-    });
-  };
-
   const renderPage = (projectsArray, project) => {
-    renderProjects(projectsArray, project);
-    renderTodos(project);
+    render.renderProjects(projectsArray, project);
+    render.renderTodos(project);
   };
 
+  // add project
   const addProject = document.getElementById("add-project");
   addProject.onclick = (e) => {
     e.preventDefault();
@@ -85,16 +28,17 @@ const domController = (() => {
     projectInput.classList.add("shake");
     return undefined;
   };
-
   const projects = document.getElementById("projects");
-
+  // remove project
   $(projects).on("click", ".remove-project", (e) => {
     PubSub.publish("REMOVE_PROJECT", e.target.dataset.name);
   });
+  // select project
   $(projects).on("click", ".project-name", (e) => {
     PubSub.publish("SELECT_PROJECT", e.target.dataset.name);
   });
 
+  // add todo
   const addTodo = document.getElementById("add-todo");
   addTodo.onclick = (e) => {
     e.preventDefault();
@@ -117,6 +61,20 @@ const domController = (() => {
     todoForm.classList.add("shake");
     return undefined;
   };
+  const todos = document.getElementById("todos");
+  // remove todo
+  $(todos).on("click", ".remove-todo", (e) => {
+    const projectName = e.target.parentNode.dataset.proj;
+    const todoName = e.target.parentNode.dataset.name;
+    PubSub.publish("REMOVE_TODO", { projectName, todoName });
+  });
+
+  $(todos).on("click", ".checkbox", (e) => {
+    const projectName = e.target.parentNode.dataset.proj;
+    const todoName = e.target.parentNode.dataset.name;
+    const { checked } = e.target;
+    PubSub.publish("CHECK", { projectName, todoName, checked });
+  });
 
   return { renderPage };
 })();
