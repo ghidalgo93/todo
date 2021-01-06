@@ -1,0 +1,130 @@
+body {
+  background-color: #72a5b6;
+  margin: 0;
+  font-family: "Fredoka One", cursive;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  background-color: #1d4574;
+  color: #fecb73;
+}
+
+input,
+select {
+  background-color: #72a5b6;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  padding: 0.5em;
+}
+
+#content {
+  display: flex;
+}
+
+.container {
+  background-color: #1d4574;
+  margin: 2em;
+  border: none;
+  border-radius: 5px;
+}
+
+#projects {
+  background-color: #72a5b6;
+  margin: 2em;
+  border: none;
+  border-radius: 5px;
+}
+
+.project {
+  display: flex;
+  align-items: center;
+  color: #1d4574;
+}
+
+#project-sidebar {
+  width: 150px;
+}
+
+#project-form {
+  display: flex;
+  align-items: center;
+}
+
+.selected {
+  color: #fecb73;
+}
+
+#todos-display {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+#todo-header {
+  display: flex;
+  color: #fecb73;
+  justify-content: space-between;
+  width: 400px;
+  padding: 1em;
+}
+
+#todos {
+  background-color: #72a5b6;
+  padding: 1em;
+  width: 80%;
+  border: none;
+  border-radius: 5px;
+}
+
+.todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #1d4574;
+}
+
+#todo-form {
+  display: flex;
+  flex-flow: column;
+  width: 250px;
+}
+
+.clicker {
+  background-color: #1d4574;
+  font-weight: bold;
+  font-size: 2em;
+  border: none;
+  color: #fbd79b;
+}
+
+.remove-project,
+.remove-todo {
+  background-color: #72a5b6;
+  font-weight: bold;
+  font-size: 1.5em;
+  border: none;
+  color: #fbd79b;
+}
+
+.shake {
+  animation-name: shake;
+  animation-iteration-count: 5;
+  animation-duration: 0.1s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}

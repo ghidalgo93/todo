@@ -1,29 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>todo</title>
-</head>
-<body>
-	<div id="wrapper">
-		<h1 id="headline">Welcome to Do</h1>
-
-		<div id="new-todo-field">
-			<label id="todo-label" for="todo-item">New Do:</label>
-			<input id="todo-item" type="text" name="todo-item">
-			<label id="duedate-label" for="todo-duedate"></label>
-			<input id="todo-duedate" type="date">
-			<label id="project-label" for="project-pulldown"></label>
-			<select id="project-pulldown" name="project-pulldown">
-				<option id="project-default" value="main">main</option>
-			</select>
-			<button id="add-btn">Add Do</button>
-		</div>
-
-		<div id="todo-container"></div>
-		<button id="add-project">Add Project</button>
-
-	</div>
-	<script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Do</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script src="main.js"></script>
+  </body>
 </html>

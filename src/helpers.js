@@ -1,18 +1,18 @@
-// Removes all child nodes from a given DOM element
-// input: DOM element
-function removeAllChildNodes(parent){
-	while (parent.firstChild){
-		parent.removeChild(parent.firstChild);
-	}
-};
+const helpers = (() => {
+  const verifyInputs = (inputs) => {
+    if (inputs.some((inp) => !inp || inp.length === 0)) {
+      return false;
+    }
+    return true;
+  };
 
-const isRequired = (param) => { 
-	throw Error(`${param} is required`)
-}
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
 
-export {
-	removeAllChildNodes,
-	isRequired
-}
+  return { verifyInputs, removeAllChildNodes };
+})();
 
-
+export default helpers;
