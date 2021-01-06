@@ -6,27 +6,25 @@ const pageInit = (() => {
     const pageTitle = document.createElement("h1");
     pageTitle.textContent = "ToDo";
     header.appendChild(pageTitle);
-    // content <div flex>
+    // content
     const content = document.createElement("div");
     content.id = "content";
+
     // projectsSidebar
     const projectsSidebar = document.createElement("ul");
     projectsSidebar.id = "projects-sidebar";
     projectsSidebar.classList.add("container");
     // projects
     const projects = document.createElement("ul");
-    projects.classList.add("sub-container");
     projects.id = "projects";
-    // addProjectsForm <form>
+    // addProjectsForm
     const projectForm = document.createElement("form");
     projectForm.id = "project-form";
-
     const projectInput = document.createElement("input");
     projectInput.id = "project-input";
     projectInput.type = "text";
     projectInput.name = "projectName";
     projectInput.placeholder = "New Project";
-
     const addProject = document.createElement("button");
     addProject.id = "add-project";
     addProject.textContent = "+";
@@ -37,39 +35,41 @@ const pageInit = (() => {
 
     projectsSidebar.appendChild(projects);
     projectsSidebar.appendChild(projectForm);
-    // todosDisplay <div flex col>
+
+    // todosDisplay
     const todosDisplay = document.createElement("div");
     todosDisplay.classList.add("container");
     todosDisplay.id = "todos-display";
-    // todos <ul> data=projectName
+    // header
+    const todoHeader = document.createElement("div");
+    todoHeader.id = "todo-header";
+    const nameHead = document.createElement("div");
+    nameHead.textContent = "Name";
+    const dateHead = document.createElement("div");
+    dateHead.textContent = "Due Date";
+    todoHeader.appendChild(nameHead);
+    todoHeader.appendChild(dateHead);
+    // todos
     const todos = document.createElement("ul");
-    todos.classList.add("sub-container");
     todos.id = "todos";
-
     // addTodoForm <form>
     const todoForm = document.createElement("form");
     todoForm.id = "todo-form";
-    todosDisplay.appendChild(todos);
-    todosDisplay.appendChild(todoForm);
-
     const todoName = document.createElement("input");
     todoName.id = "todo-name";
     todoName.classList.add("todo-input");
     todoName.type = "text";
     todoName.placeholder = "New Todo";
-
     const todoDesc = document.createElement("input");
     todoDesc.id = "todo-desc";
     todoDesc.classList.add("todo-input");
     todoDesc.type = "text";
     todoDesc.placeholder = "Description";
-
     const todoDate = document.createElement("input");
     todoDate.id = "todo-date";
     todoDate.classList.add("todo-input");
     todoDate.type = "date";
     todoDate.value = "Due Date";
-
     const todoPriority = document.createElement("select");
     todoPriority.id = "todo-priority";
     todoPriority.classList.add("todo-input");
@@ -86,22 +86,25 @@ const pageInit = (() => {
     todoPriority.appendChild(low);
     todoPriority.appendChild(med);
     todoPriority.appendChild(high);
-
     const todoProject = document.createElement("select");
     todoProject.id = "todo-project-pulldown";
     todoProject.classList.add("todo-input");
-
     const addTodo = document.createElement("button");
     addTodo.id = "add-todo";
     addTodo.textContent = "+";
     addTodo.classList.add("clicker");
 
+    // Add everything together
     todoForm.appendChild(todoName);
     todoForm.appendChild(todoDesc);
     todoForm.appendChild(todoDate);
     todoForm.appendChild(todoPriority);
     todoForm.appendChild(todoProject);
     todoForm.appendChild(addTodo);
+
+    todosDisplay.appendChild(todoHeader);
+    todosDisplay.appendChild(todos);
+    todosDisplay.appendChild(todoForm);
 
     content.appendChild(projectsSidebar);
     content.appendChild(todosDisplay);

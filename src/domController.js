@@ -9,7 +9,6 @@ const domController = (() => {
   pageInit.load();
 
   const renderProjects = (projectsArray, project) => {
-    // remove selected class from projects
     const projectsList = document.getElementById("projects");
     const projectsPulldown = document.getElementById("todo-project-pulldown");
     helpers.removeAllChildNodes(projectsList);
@@ -17,12 +16,24 @@ const domController = (() => {
     projectsArray.forEach((proj) => {
       // add each projects to the project sidebar list
       const projectLi = document.createElement("li");
-      if (proj.name === project.name) {
-        projectLi.classList.add("selected");
-      }
-      projectLi.textContent = proj.name;
       projectLi.classList.add("project");
       projectLi.dataset.name = proj.name;
+
+      const projectName = document.createElement("div");
+      projectName.dataset.name = proj.name;
+      if (proj.name === project.name) {
+        projectName.classList.add("selected");
+      }
+      projectName.textContent = proj.name;
+      projectName.classList.add("project-name");
+      projectLi.appendChild(projectName);
+      if (proj.name !== "Home") {
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "x";
+        removeBtn.classList.add("remove-project");
+        removeBtn.dataset.name = proj.name;
+        projectLi.appendChild(removeBtn);
+      }
       projectsList.appendChild(projectLi);
       // add all projects to the todos projects pulldown
       const projectOption = document.createElement("option");
@@ -36,10 +47,21 @@ const domController = (() => {
     const todosList = document.getElementById("todos");
     helpers.removeAllChildNodes(todosList);
     project.todos.forEach((todo) => {
-      // add each todo in the given project to the todos list
       const todoLi = document.createElement("li");
-      todoLi.textContent = todo.name;
       todoLi.classList.add("todo");
+      const todoCheck = document.createElement("input");
+      todoCheck.type = "checkbox";
+      const todoName = document.createElement("div");
+      todoName.textContent = todo.name;
+      const todoDate = document.createElement("div");
+      todoDate.textContent = todo.dueDate;
+      const todoRemove = document.createElement("button");
+      todoRemove.textContent = "x";
+      todoRemove.classList.add("remove-todo");
+      todoLi.appendChild(todoCheck);
+      todoLi.appendChild(todoName);
+      todoLi.appendChild(todoDate);
+      todoLi.appendChild(todoRemove);
       todosList.appendChild(todoLi);
     });
   };
@@ -65,7 +87,11 @@ const domController = (() => {
   };
 
   const projects = document.getElementById("projects");
-  $(projects).on("click", ".project", (e) => {
+
+  $(projects).on("click", ".remove-project", (e) => {
+    PubSub.publish("REMOVE_PROJECT", e.target.dataset.name);
+  });
+  $(projects).on("click", ".project-name", (e) => {
     PubSub.publish("SELECT_PROJECT", e.target.dataset.name);
   });
 
