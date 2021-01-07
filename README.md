@@ -1,5 +1,7 @@
 # A Todo Web-Application
-A simple todo web-application which allows you to create projects to store and keep track of tasks. 
+A simple todo web-application which allows you to create projects to store and keep track of tasks.
+
+[Project Page](https://gerardohidalgo.com/todo/)
 
 ## Instructions
 The application contains two main sections. 
