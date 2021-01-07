@@ -11,7 +11,7 @@ The first is the project sidebar, where projects will be displayed. By default y
 #### Todos Display
 The main area within the application is the todos display which, as you can imagine, displays all todos for a selected project. You can check off, view details, or delete todos once they are within the display. Details can be viewed by clicking the todo’s name. Todos can be added to a project by clicking on the add button below the display - which will open up a form to fill. By default the project to be added to will be the currently selected project, but can be changed within the form. 
 
-## Personal notes
+### Personal notes
 Modularity and use of closures were my main focus on this project, i.e. trying to fit everything within their own modules/objects. I was also trying to follow the principles of OOP by making sure each module was self contained and did not reference one another. 
 
 Project Start: 1/4/2021. Started on paper, designed all my objects and modules which was a major improvement. 
