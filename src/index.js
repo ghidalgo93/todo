@@ -7,6 +7,10 @@ import "./styles.css";
 const app = (() => {
   const home = project("Home");
   const projects = [home];
+  localStorage.setItem("projects", JSON.stringify(projects));
+  console.log(localStorage.getItem("projects"));
+  console.log(JSON.parse(localStorage.getItem("projects")));
+  console.log(projects);
   // home.addTodo(todo("laundry", "hang up clothes", "10/2/2020", "high"));
   domController.renderPage(projects, home);
 

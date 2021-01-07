@@ -44,7 +44,7 @@ const pageInit = (() => {
     const todoHeader = document.createElement("div");
     todoHeader.id = "todo-header";
     const nameHead = document.createElement("div");
-    nameHead.textContent = "Name";
+    nameHead.textContent = "ToDos";
     const dateHead = document.createElement("div");
     dateHead.textContent = "Due Date";
     todoHeader.appendChild(nameHead);
