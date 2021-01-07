@@ -32,7 +32,6 @@ select {
 }
 
 #projects {
-  background-color: #72a5b6;
   margin: 2em;
   border: none;
   border-radius: 5px;
@@ -41,7 +40,8 @@ select {
 .project {
   display: flex;
   align-items: center;
-  color: #1d4574;
+  /* color: #1d4574; */
+  color: #72a5b6;
 }
 
 #project-sidebar {
@@ -110,16 +110,20 @@ select {
   color: #fbd79b;
 }
 
-.remove-project,
-.remove-todo {
-  background-color: #72a5b6;
+.remove-project {
   font-weight: bold;
   font-size: 1.5em;
   border: none;
   color: #fbd79b;
+  background-color: #1d4574;
 }
 
-.checkbox::after {
+.remove-todo {
+  font-weight: bold;
+  font-size: 1.5em;
+  border: none;
+  color: #fbd79b;
+  background-color: #72a5b6;
 }
 
 .completed {
