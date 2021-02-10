@@ -1,3 +1,8 @@
+// Firebase app (core firebase SDK)
+import firebase from "firebase/app";
+import "firebase/analytics";
+import "firebase/firestore";
+//---------------------------------
 import PubSub from "pubsub-js";
 import domController from "./domController";
 import project from "./project";
@@ -80,3 +85,16 @@ const app = (() => {
   PubSub.subscribe("REMOVE_TODO", removeTodo);
   PubSub.subscribe("CHECK", setCompleteStatus);
 })();
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyA2IW726BBWcDipt9UkptA0FHlDr8lA7jE",
+  authDomain: "todo-9bda2.firebaseapp.com",
+  projectId: "todo-9bda2",
+  storageBucket: "todo-9bda2.appspot.com",
+  messagingSenderId: "241010796854",
+  appId: "1:241010796854:web:5509102b5bef6d4cfa2b97",
+  measurementId: "G-BM3K5MXRJN"
+};
+// Initialize firebase
+firebase.initializeApp(firebaseConfig);
