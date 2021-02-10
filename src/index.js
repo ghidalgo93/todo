@@ -9,18 +9,44 @@ import project from "./project";
 import todo from "./todo";
 import "./styles.css";
 
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyA2IW726BBWcDipt9UkptA0FHlDr8lA7jE",
+  authDomain: "todo-9bda2.firebaseapp.com",
+  projectId: "todo-9bda2",
+  storageBucket: "todo-9bda2.appspot.com",
+  messagingSenderId: "241010796854",
+  appId: "1:241010796854:web:5509102b5bef6d4cfa2b97",
+  measurementId: "G-BM3K5MXRJN",
+};
+// Initialize firebase
+firebase.initializeApp(firebaseConfig);
+
+// Saves a project to the Firestore db.
+function saveProject(proj) {
+  // Add a new project entry to the db
+  return firebase
+    .firestore()
+    .collection("projects")
+    .add({
+      name: proj.name,
+      todos: proj.todos,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+    .catch(function (error) {
+      console.error("Error writing new message to the database", error);
+    });
+}
+
 const app = (() => {
   const home = project("Home");
+  saveProject(home);
   const projects = [home];
-  localStorage.setItem("projects", JSON.stringify(projects));
-  console.log(localStorage.getItem("projects"));
-  console.log(JSON.parse(localStorage.getItem("projects")));
-  console.log(projects);
-  // home.addTodo(todo("laundry", "hang up clothes", "10/2/2020", "high"));
   domController.renderPage(projects, home);
 
   const addProject = (topic, projectName) => {
     const newProject = project(projectName);
+    saveProject(newProject);
     projects.push(newProject);
     domController.renderPage(projects, newProject);
   };
@@ -85,16 +111,3 @@ const app = (() => {
   PubSub.subscribe("REMOVE_TODO", removeTodo);
   PubSub.subscribe("CHECK", setCompleteStatus);
 })();
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyA2IW726BBWcDipt9UkptA0FHlDr8lA7jE",
-  authDomain: "todo-9bda2.firebaseapp.com",
-  projectId: "todo-9bda2",
-  storageBucket: "todo-9bda2.appspot.com",
-  messagingSenderId: "241010796854",
-  appId: "1:241010796854:web:5509102b5bef6d4cfa2b97",
-  measurementId: "G-BM3K5MXRJN"
-};
-// Initialize firebase
-firebase.initializeApp(firebaseConfig);
